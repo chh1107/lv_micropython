@@ -246,6 +246,7 @@ extern const struct _mod_network_nic_type_t mod_network_nic_type_cc3k;
 #define MP_STATE_PORT MP_STATE_VM
 
 #if MICROPY_PY_LVGL
+//#pragma message "XXXXXYYYYYY"
 #ifndef MICROPY_INCLUDED_PY_MPSTATE_H
 #define MICROPY_INCLUDED_PY_MPSTATE_H
 #include "lib/lv_bindings/lvgl/src/misc/lv_gc.h"

@@ -8,7 +8,8 @@ MEMORY
     FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 2048K /* entire flash */
     FLASH_ISR (rx)  : ORIGIN = 0x08000000, LENGTH = 16K /* sector 0, 16 KiB */
     FLASH_FS (rx)   : ORIGIN = 0x08004000, LENGTH = 112K /* sectors 1-4: 3*16K+64K */
-    FLASH_TEXT (rx) : ORIGIN = 0x08020000, LENGTH = 896K /* sectors 5-11 are 128K */
+    /* FLASH_TEXT (rx) : ORIGIN = 0x08020000, LENGTH = 896K /* sectors 5-11 are 128K */ 
+    FLASH_TEXT (rx) : ORIGIN = 0x08020000, LENGTH = 1920K /* sectors 5-23  */
     CCMRAM (xrw)    : ORIGIN = 0x10000000, LENGTH = 64K
     RAM (xrw)       : ORIGIN = 0x20000000, LENGTH = 192K
     SDRAM(xrw)      : ORIGIN = 0xC0000000, LENGTH = 8192K

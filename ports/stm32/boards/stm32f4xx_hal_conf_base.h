@@ -59,6 +59,16 @@
 #include "stm32f4xx_ll_rtc.h"
 #include "stm32f4xx_ll_usart.h"
 
+#if (BOARD==STM32F429DISC)
+#include "stm32f4xx_hal_ltdc.h"
+#include "stm32f4xx_hal_ltdc_ex.h"
+#include "stm32f4xx_hal_dma2d.h"
+
+#define HAL_LTDC_MODULE_ENABLED
+#define HAL_DMA2D_MODULE_ENABLED
+
+#endif
+
 // Enable various HAL modules
 #define HAL_ADC_MODULE_ENABLED
 #define HAL_CAN_MODULE_ENABLED
