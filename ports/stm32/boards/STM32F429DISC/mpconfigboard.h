@@ -1,7 +1,9 @@
 #define MICROPY_HW_BOARD_NAME       "F429I-DISCO"
 #define MICROPY_HW_MCU_NAME         "STM32F429"
 
-#define MICROPY_PY_LVGL  1// TH: Support LVGL 
+#ifdef MICROPY_PY_LVGL// TH: Support LVGL 
+#define MICROPY_LVGL_F429_DISCO_DISPLAY (1) // TH: Include Display Driver
+#endif
 
 #define MICROPY_HW_HAS_SWITCH       (1)
 #define MICROPY_HW_HAS_FLASH        (1)

@@ -264,6 +264,14 @@ extern const struct _mod_network_nic_type_t mod_network_nic_type_cc3k;
 #define RK043FN48H_ROOTS
 #endif
 
+// TH
+#if MICROPY_LVGL_F429_DISCO_DISPLAY
+#define F429_DISCO_DISPLAY_ROOTS void* f429_disco_fb[2];
+#else
+#define F429_DISCO_DISPLAY_ROOTS
+#endif
+
+
 #if MICROPY_BLUETOOTH_NIMBLE
 struct _mp_bluetooth_nimble_root_pointers_t;
 struct _mp_bluetooth_nimble_malloc_t;
@@ -287,6 +295,7 @@ struct _mp_bluetooth_btstack_root_pointers_t;
     LV_ROOTS \
     void *mp_lv_user_data; \
     RK043FN48H_ROOTS \
+    F429_DISCO_DISPLAY_ROOTS \
     const char *readline_hist[8]; \
     \
     mp_obj_t pyb_hid_report_desc; \
