@@ -32,8 +32,10 @@
 #define MICROPY_HW_UART6_RX     (pin_C7)
 
 // I2C buses
+#ifndef MICROPY_LVGL_F429_DISCO_DISPLAY
 #define MICROPY_HW_I2C3_SCL (pin_A8)
 #define MICROPY_HW_I2C3_SDA (pin_C9)
+#endif
 
 // SPI buses
 // #define MICROPY_HW_SPI1_NSS     (pin_A4)
@@ -52,10 +54,13 @@
 // #define MICROPY_HW_SPI4_SCK     (pin_E12)
 // #define MICROPY_HW_SPI4_MISO    (pin_E13)
 // #define MICROPY_HW_SPI4_MOSI    (pin_E14)
+
+#ifndef MICROPY_LVGL_F429_DISCO_DISPLAY
 #define MICROPY_HW_SPI5_NSS     (pin_F6)
 #define MICROPY_HW_SPI5_SCK     (pin_F7)
 #define MICROPY_HW_SPI5_MISO    (pin_F8)
 #define MICROPY_HW_SPI5_MOSI    (pin_F9)
+#endif
 // #define MICROPY_HW_SPI6_NSS     (pin_G8)
 // #define MICROPY_HW_SPI6_SCK     (pin_G13)
 // #define MICROPY_HW_SPI6_MISO    (pin_G12)
