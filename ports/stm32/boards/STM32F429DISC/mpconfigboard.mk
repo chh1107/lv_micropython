@@ -7,5 +7,7 @@ TEXT1_ADDR = 0x08020000
 
 # TH: Enable LFS
 MICROPY_VFS_LFS2 = 1
+# CH: Enable LVGL binding
+MICROPY_PY_LVGL = 1
 
 FROZEN_MANIFEST ?= $(BOARD_DIR)/manifest.py
