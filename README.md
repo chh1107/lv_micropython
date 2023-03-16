@@ -1,3 +1,52 @@
+# Micropython + lvgl + STM32F429-DISC extensions
+
+**Fork of the MicroPython bindings to LVGL, tailored for the STM32F429 Dicovery Board**
+
+## Getting started
+
+First step is always to clone `lv_micropython` and update the required submodules recursively:
+
+```
+git clone https://github.com/chh1107/lv_micropython.git
+cd lv_micropython
+git submodule update --init --recursive lib/stm32lib
+git submodule update --init --recursive lib/lv_bindings
+git submodule update --init --recursive lib/rt_lab_micropython
+```
+
+Next you should build mpy-cross
+
+```bash
+make -C mpy-cross
+```
+
+Finally, build the STM32F429DISC port:
+
+```bash
+make -C ports/stm32 BOARD=STM32F429DISC
+```
+
+The resulting firmware will be generated in the directory `ports\stm32\build-STM32F429DISC\` in different file formats as `firmware.{hex,dfu,elf,bin}` and can be directly flashed to the board. If you use the official STM32CubeProgrammer application, then the `hex` file is a good choice.
+
+After flashing, connect to the board (e.g., using [mpremote](https://docs.micropython.org/en/latest/reference/mpremote.html)) and test your build via the integrated demo:
+
+```python
+Connected to MicroPython at COM3
+Use Ctrl-] to exit this shell
+MicroPython af22978f9-dirty on 2023-03-16; F429I-DISCO with STM32F429
+Type "help()" for more information.
+>>> from lab.demos import lvgl_hello_world
+>>> lvgl_hello_world.main()
+```
+
+You should see an animated "hello world" example on the display.
+
+*Hint: You can get further information about the integrated modules with `help('modules')`.*
+
+---
+
+Original README:
+
 # Micropython + lvgl
 
 **Micropython bindings to LVGL for Embedded devices, Unix and JavaScript**
@@ -5,20 +54,20 @@
 [![Build lv_micropython unix port](https://github.com/lvgl/lv_micropython/actions/workflows/unix_port.yml/badge.svg)](https://github.com/lvgl/lv_micropython/actions/workflows/unix_port.yml)
 [![Build lv_micropython stm32 port](https://github.com/lvgl/lv_micropython/actions/workflows/stm32_port.yml/badge.svg)](https://github.com/lvgl/lv_micropython/actions/workflows/stm32_port.yml)
 [![esp32 port](https://github.com/lvgl/lv_micropython/actions/workflows/ports_esp32.yml/badge.svg)](https://github.com/lvgl/lv_micropython/actions/workflows/ports_esp32.yml) [![Build lv_micropython rp2 port](https://github.com/lvgl/lv_micropython/actions/workflows/rp2_port.yml/badge.svg)](https://github.com/lvgl/lv_micropython/actions/workflows/rp2_port.yml)
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/lvgl/lv_micropython)  
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/lvgl/lv_micropython)
 
 To quickly run Micropython + LVGL from your web browser you can also use the [Online Simulator](https://sim.lvgl.io/).
 
 **For information about Micropython lvgl bindings please refer to [lv_binding_micropython/README.md](https://github.com/lvgl/lv_binding_micropython/blob/master/README.md)**
 
-See also [Micropython + LittlevGL](https://blog.lvgl.io/2019-02-20/micropython-bindings) blog post. (LittlevGL is LVGL's previous name.)  
+See also [Micropython + LittlevGL](https://blog.lvgl.io/2019-02-20/micropython-bindings) blog post. (LittlevGL is LVGL's previous name.)
 For questions and discussions - please use the forum: https://forum.lvgl.io/c/micropython
 
 Original micropython README: https://github.com/micropython/micropython/blob/master/README.md
 
 ## Relationship between `lv_micropython` and `lv_binding_micropython`
 
-Originally, `lv_micropython` was created as an example of how to use [lv_binding_micropython](https://github.com/lvgl/lv_binding_micropython) on a Micropython fork.  
+Originally, `lv_micropython` was created as an example of how to use [lv_binding_micropython](https://github.com/lvgl/lv_binding_micropython) on a Micropython fork.
 As such, we try to keep changes here as minimal as possible and we try to keep it in sync with Micropython upstream releases. We also try to add changes to `lv_binding_micropython` instead of to `lv_micropython`, when possible. (for example we keep all drivers in `lv_binding_micropython`, the ESP32 CMake functionality etc.)
 
 Eventually it turned out that many people prefer using `lv_micropython` directly and only a few use it as a reference to support LVGL on their own Micropython fork.
@@ -71,7 +120,7 @@ Python 3 is required, but you can install some other version of python3 instead 
 
 ### ESP32 port
 
-Please run `esp-idf/export.sh` from your ESP-IDF installation directory as explained in the [Micropython ESP32 Getting Started documentation](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/#get-started-export)  
+Please run `esp-idf/export.sh` from your ESP-IDF installation directory as explained in the [Micropython ESP32 Getting Started documentation](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/#get-started-export)
 ESP-IDF version needs to match Micropython expected esp-idf, otherwise a warning will be displayed (and build will probably fail)
 For more details refer to [Setting up the toolchain and ESP-IDF](https://github.com/lvgl/lv_micropython/blob/master/ports/esp32/README.md#setting-up-the-toolchain-and-esp-idf)
 
