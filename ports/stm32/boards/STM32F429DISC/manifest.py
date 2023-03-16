@@ -1,3 +1,2 @@
 include("$(PORT_DIR)/boards/manifest.py")
-freeze("$(MPY_DIR)/lib/lv_bindings/driver/stm32/STM32F429DISC/python", "display.py")
-
+include("$(MPY_DIR)/lib/rt_lab_micropython/manifest.py")

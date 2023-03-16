@@ -53,3 +53,6 @@
 	url = https://github.com/andrewleech/wiznet_ioLibrary_Driver.git
 	# Requires https://github.com/Wiznet/ioLibrary_Driver/pull/120
 	# url = https://github.com/Wiznet/ioLibrary_Driver.git
+[submodule "lib/rt_lab_micropython"]
+	path = lib/rt_lab_micropython
+	url = https://github.com/chh1107/rt_lab_micropython.git
