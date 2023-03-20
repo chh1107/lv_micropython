@@ -9,5 +9,8 @@ TEXT1_ADDR = 0x08020000
 MICROPY_VFS_LFS2 = 1
 # CH: Enable LVGL binding
 MICROPY_PY_LVGL = 1
-
-FROZEN_MANIFEST ?= $(BOARD_DIR)/manifest.py
+# CH: Configure the correct hardware components for the latest board revision
+# (see stm32f429i_discovery.h from lib/STM32CubeF4 package)
+USE_STM32F429I_DISCOVERY_REVD = 1
+# CH: Configure include locations for frozen MicroPython modules
+FROZEN_MANIFEST ?= ../../lib/rt_lab_micropython/manifest.py

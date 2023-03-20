@@ -327,7 +327,7 @@ SRC_CXX += \
 SRC_O += \
 	$(STARTUP_FILE) \
 	$(SYSTEM_FILE)
-    
+
 ifeq ($(MCU_SERIES),l0)
 CSUPEROPT = -Os # save some code space
 endif
@@ -534,7 +534,7 @@ endif
 
 ifeq ($(MICROPY_PY_LVGL),1)
 CFLAGS += -DMICROPY_PY_LVGL
-LIB_SRC_C += $(shell find $(LVGL_BINDING_DIR)/driver/stm32/$(BOARD)/*.c)
+include $(LVGL_BINDING_DIR)/driver/stm32/$(BOARD)/micropython.mk
 #LIB_SRC_C += $(shell find $(LVGL_BINDING_DIR)/driver/stm32/string1.c)
 ifeq ($(MCU_SERIES),$(filter $(MCU_SERIES),f7))
 SRC_HAL += $(addprefix $(HAL_DIR)/Src/stm32$(MCU_SERIES)xx_,\
