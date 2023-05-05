@@ -30,6 +30,7 @@
 #include "py/runtime.h"
 #include "py/smallint.h"
 #include "py/obj.h"
+#include "py/mphal.h"
 #include "shared/timeutils/timeutils.h"
 #include "extmod/utime_mphal.h"
 #include "systick.h"
@@ -129,6 +130,17 @@ STATIC mp_obj_t time_time(void) {
 }
 MP_DEFINE_CONST_FUN_OBJ_0(time_time_obj, time_time);
 
+/// \function monotonic()
+/// Return the value (in fractional seconds) of a monotonic clock, i.e. a clock
+/// that cannot go backwards. The clock is not affected by system clock updates.
+/// The reference point of the returned value is undefined, so that only the
+/// difference between the results of two calls is valid.
+STATIC mp_obj_t time_monotonic(void) {
+    uint32_t t0 = mp_hal_ticks_ms();
+    return mp_obj_new_float(t0 / 1000.0);
+}
+MP_DEFINE_CONST_FUN_OBJ_0(time_monotonic_obj, time_monotonic);
+
 #if MICROPY_PY_UTIME
 
 STATIC const mp_rom_map_elem_t time_module_globals_table[] = {
@@ -138,7 +150,6 @@ STATIC const mp_rom_map_elem_t time_module_globals_table[] = {
     { MP_ROM_QSTR(MP_QSTR_localtime), MP_ROM_PTR(&time_localtime_obj) },
     { MP_ROM_QSTR(MP_QSTR_mktime), MP_ROM_PTR(&time_mktime_obj) },
     { MP_ROM_QSTR(MP_QSTR_time), MP_ROM_PTR(&time_time_obj) },
-    { MP_ROM_QSTR(MP_QSTR_monotonic), MP_ROM_PTR(&time_time_obj) },
     { MP_ROM_QSTR(MP_QSTR_sleep), MP_ROM_PTR(&mp_utime_sleep_obj) },
     { MP_ROM_QSTR(MP_QSTR_sleep_ms), MP_ROM_PTR(&mp_utime_sleep_ms_obj) },
     { MP_ROM_QSTR(MP_QSTR_sleep_us), MP_ROM_PTR(&mp_utime_sleep_us_obj) },
@@ -148,6 +159,7 @@ STATIC const mp_rom_map_elem_t time_module_globals_table[] = {
     { MP_ROM_QSTR(MP_QSTR_ticks_add), MP_ROM_PTR(&mp_utime_ticks_add_obj) },
     { MP_ROM_QSTR(MP_QSTR_ticks_diff), MP_ROM_PTR(&mp_utime_ticks_diff_obj) },
     { MP_ROM_QSTR(MP_QSTR_time_ns), MP_ROM_PTR(&mp_utime_time_ns_obj) },
+    { MP_ROM_QSTR(MP_QSTR_monotonic), MP_ROM_PTR(&time_monotonic_obj) },
     { MP_ROM_QSTR(MP_QSTR_monotonic_ns), MP_ROM_PTR(&mp_utime_time_ns_obj) },
 };
 
