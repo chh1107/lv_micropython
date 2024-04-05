@@ -29,6 +29,7 @@ LD += -m32
 endif
 
 #LittlevGL
+ifneq ($(PROG),mpy-cross)
 LVGL_BINDING_DIR = $(TOP)/lib/lv_bindings
 LVGL_DIR = $(LVGL_BINDING_DIR)/lvgl
 LVGL_GENERIC_DRV_DIR = $(LVGL_BINDING_DIR)/driver/generic
@@ -51,6 +52,7 @@ LVGL_MPY: $(LVGL_MPY)
 
 CFLAGS_MOD += -Wno-unused-function
 SRC_MOD += $(subst $(TOP)/,,$(shell find $(LVGL_DIR)/src $(LVGL_DIR)/examples $(LVGL_GENERIC_DRV_DIR) -type f -name "*.c") $(LVGL_MPY))
+endif #LittlevGL
 
 # External modules written in C.
 ifneq ($(USER_C_MODULES),)
