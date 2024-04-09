@@ -47,6 +47,7 @@ static const char fresh_boot_py[] =
 #if MICROPY_HW_ENABLE_USB
     "#pyb.usb_mode('VCP+MSC') # act as a serial and a storage device\r\n"
     "#pyb.usb_mode('VCP+HID') # act as a serial device and a mouse\r\n"
+    "pyb.usb_mode('VCP') # act as a serial device only\r\n"
 #endif
 ;
 
