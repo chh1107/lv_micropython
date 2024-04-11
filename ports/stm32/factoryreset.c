@@ -52,9 +52,7 @@ static const char fresh_boot_py[] =
 ;
 
 static const char fresh_main_py[] =
-    "# main.py -- put your code here!\r\n\r\n"
-    "from lab.demos import lvgl_hello_world\r\n\r\n"
-    "lvgl_hello_world.main()"
+    "# main.py -- put your code here!\r\n"
 ;
 
 #if MICROPY_HW_ENABLE_USB
